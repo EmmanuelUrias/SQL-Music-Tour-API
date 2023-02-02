@@ -9,7 +9,8 @@ require('dotenv').config()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-// SEQUELIZE CONNECTION
+/* // SEQUELIZE CONNECTION
+// No longer necassary with index.js
 const sequelize = new Sequelize({
     storage: process.env.PG_URI,
     dialect: 'postgres',
@@ -22,7 +23,7 @@ const sequelize = new Sequelize({
     console.log(`connected with Sequalize`)
   } catch(err) {
     console.log(`unable to connect to PG: ${err}`)
-  }
+  } */
   
 
 // ROOT
