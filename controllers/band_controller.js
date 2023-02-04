@@ -2,11 +2,17 @@
 const band = require('express').Router()
 const db = require('../models')
 const { Band } = db 
+const { Op } = require('sequelize')
 
 //FIND ALL BANDS
 band.get('/', async (req, res) => {
     try {
-        const foundBands = await Band.findAll()
+        const foundBands = await Band.findAll({
+            order: [ [ 'available_start_time', 'ASC' ] ],
+            where: {
+                name: {[Op.like]: `%${req.query.name || ''}%`}
+            }
+        })
         res.status(200).json(foundBands)
     } catch (error) {
      // res.status(500).json(error) : this is a security hazard because a user can get a lot of info from an error
