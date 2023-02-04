@@ -28,6 +28,55 @@ band.get('/:id', async (req, res) => {
     }
 })
 
+//CREATE A BAND
+band.post('/', async (req, res) => {
+    try {
+        const newBand = await Band.create(req.body)
+        res.status(200).json({
+            message: 'New band created',
+            data: newBand
+
+        })
+    } catch (err) {
+        res.status(500).send('Server error')
+        console.log(err)
+    }
+})
+
+//UPDATE BAND
+band.put('/:id', async (req, res) => {
+    try {
+        const  updatedBands = Band.update(req.body, {
+            where: {
+                band_id: req.params.id
+            }
+        })
+        res.status(200).json({
+            message: `Updated ${updatedBands} band(s)`
+        })
+    } catch (err) {
+        res.status(500).send('Server error')
+        console.log(err)
+    }
+})
+
+// DELETE BAND
+band.delete('/:id', async (req, res) => {
+    try {
+        const  deletedBands = Band.destroy({
+                where: {
+                band_id: req.params.id
+            }
+        })
+        res.status(200).json({
+            message: `deleted ${deletedBands} band(s)`
+        })
+    } catch (err) {
+        res.status(500).send('Server error')
+        console.log(err)
+    }
+})
+
 
 
 // EXPORT
