@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('stage_events', {
+    await queryInterface.createTable('stage_event', {
       stage_events_id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'stage',
-          key: 'stage_id_pkey'
+          key: 'stage_id'
         }
       },
       event_id: {
@@ -22,12 +22,12 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'event',
-          key: 'event_id_pkey'
+          key: 'event_id'
         }
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('stage_events');
+    await queryInterface.dropTable('stage_event');
   }
 };
