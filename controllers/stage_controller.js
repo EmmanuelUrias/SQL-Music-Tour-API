@@ -7,12 +7,12 @@ const { Op } = require('sequelize')
 //FIND ALL Stages
 stage.get('/', async (req, res) => {
     try {
-        const stageStages = await Stage.findAll()
-        res.status(200).json(stageStages)
+        const foundStages = await Stage.findAll()
+        res.status(200).json(foundStages)
     } catch (error) {
      // res.status(500).json(error) : this is a security hazard because a user can get a lot of info from an error
      res.status(500).send('Server error')
-     console.log(err)
+     console.log(error)
     }
 })
 
@@ -25,7 +25,7 @@ stage.get('/:id', async (req, res) => {
         res.status(200).json(foundStage)
     } catch (error) {
         res.status(500).send('Server error')
-        console.log(err)
+        console.log(error)
     }
 })
 

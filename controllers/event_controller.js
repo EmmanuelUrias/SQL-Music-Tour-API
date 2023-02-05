@@ -7,12 +7,17 @@ const { Op } = require('sequelize')
 //FIND ALL Events
 event.get('/', async (req, res) => {
     try {
-        const foundEvents = await Event.findAll()
+        const foundEvents = await Event.findAll({
+            order: [ [ 'start_time', 'ASC' ] ],
+            where: {
+                name: {[Op.like]: `%${req.query.name || ''}%`}
+            }
+        })
         res.status(200).json(foundEvents)
     } catch (error) {
      // res.status(500).json(error) : this is a security hazard because a user can get a lot of info from an error
      res.status(500).send('Server error')
-     console.log(err)
+     console.log(error)
     }
 })
 
@@ -22,10 +27,10 @@ event.get('/:id', async (req, res) => {
         const foundEvent = await Event.findOne({
             where: { event_id: req.params.id }
         })
-        res.status(200).json(foundevent)
+        res.status(200).json(foundEvent)
     } catch (error) {
         res.status(500).send('Server error')
-        console.log(err)
+        console.log(error)
     }
 })
 
