@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
 
       SetTime.belongsTo(Stage, {
         foreignKey: 'stage_id', 
-        as: 'stage'
+        as: 'stages'
       })
     }
   }
