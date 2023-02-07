@@ -11,27 +11,15 @@ module.exports = {
       },
       event_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'event',
-          key: 'event_id_pkey'
-        }
+        allowNull: false
       },
       stage_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'stage',
-          key: 'stage_id_pkey'
-        }
+        allowNull: false
       },
       band_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model:'band',
-          key: 'band_id_pkey'
-        }
+        allowNull: false
       },
       start_time: {
         type: Sequelize.DATE,
